@@ -1,0 +1,17 @@
+.hover-li {
+    background-color: transparent;
+    color: inherit
+
+}
+
+.hover-li:hover{
+    background-color: rgba(0, 125, 136, 0.15);
+    cursor: pointer;
+    color: #007D88
+}
+
+.active {
+    background-color: rgba(0, 125, 136, 0.15);
+    color: #007D88
+    
+}

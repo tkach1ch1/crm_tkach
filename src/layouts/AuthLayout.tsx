@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 
 const AuthLayout = () => {
-    const user = false
+    const user = true
 
     if (user) {
         return <Navigate to='/dashboard' />

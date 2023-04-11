@@ -1,7 +1,12 @@
-import React from 'react'
-
 const DashboardPage = () => {
-    return <div>DashboardPage</div>
+    return (
+        <div
+            style={{ marginLeft: '100px' }}
+            className='position-relative'
+        >
+            DashboardPage
+        </div>
+    )
 }
 
 export default DashboardPage

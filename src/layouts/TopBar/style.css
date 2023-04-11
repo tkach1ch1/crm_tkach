@@ -1,0 +1,27 @@
+.hover-btn {
+    background-color: transparent;
+}
+
+.hover-btn:hover {
+    background-color: #F4F5F5;
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-li {
+    background-color: transparent;
+}
+
+.hover-li:hover{
+    background-color: #F4F5F5;
+    transition: all 0.3s ease-in-out;
+}
+
+.burger-hover {
+opacity: 1;
+}
+
+.burger-hover:hover {
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s;
+}

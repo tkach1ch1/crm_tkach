@@ -6,18 +6,20 @@ import developer from '../../../../assets/images/developer.jpg'
 const ProfileIcon = () => {
     const [btnToggle, setBtnToggle] = useState(false)
 
-    const ref = useRef(null)
+    const refBtn = useRef(null)
 
     const onHandleClickOutside = () => {
         btnToggle && setBtnToggle(false)
     }
 
-    useOnClickOutside(ref, onHandleClickOutside)
+    useOnClickOutside(refBtn, onHandleClickOutside)
 
     return (
-        <div onClick={onHandleClickOutside}>
+        <div
+            onClick={onHandleClickOutside}
+            ref={refBtn}
+        >
             <div
-                ref={ref}
                 onClick={() => setBtnToggle(!btnToggle)}
                 style={{ width: '38px', height: '38px', cursor: 'pointer' }}
                 className='d-flex position-relative justify-content-center align-items-center rounded-circle'

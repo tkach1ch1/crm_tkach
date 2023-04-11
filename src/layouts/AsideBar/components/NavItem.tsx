@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
 import '../style.css'
-import { useAppSelector } from '../../../hooks/useReduxHook'
+import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook'
 import { NavLink } from 'react-router-dom'
+import { burgerToggelAction } from '../../../redux/burgerToggleReducer'
 
 interface NavItemProps {
     children: ReactNode
@@ -9,10 +10,11 @@ interface NavItemProps {
 }
 
 const NavItem = ({ children, link }: NavItemProps) => {
+    const dispatch = useAppDispatch()
+
     const burgerToggle = useAppSelector((state) => state.toggleBurger.toggle)
 
-    const itemsPosition = burgerToggle ? 'justify-content-start ml-2' : 'justify-content-center'
-
+    const itemsPosition = burgerToggle ? 'justify-content-start' : 'justify-content-center'
     const className =
         'rounded hover-li p-2 mb-2 d-flex justify-content-start align-items-center'.concat(
             ' ' + itemsPosition
@@ -21,10 +23,10 @@ const NavItem = ({ children, link }: NavItemProps) => {
     return (
         <li>
             <NavLink
+                onClick={() => dispatch(burgerToggelAction(false))}
                 to={link}
                 style={{
                     height: '40px',
-                    marginBottom: '10px',
                     width: '100%',
                     gap: '10px',
                     textDecoration: 'none',

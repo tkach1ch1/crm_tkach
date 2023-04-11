@@ -8,7 +8,7 @@ const NavBarContainer = ({ children }: NavBarContainerProps) => {
     return (
         <div
             className='fixed-top border-bottom'
-            style={{ height: '65px', zIndex: 1000 }}
+            style={{ height: '65px', zIndex: 1000, background: 'white' }}
         >
             <div
                 className='d-flex align-items-center justify-content-between w-100 px-3'

@@ -2,6 +2,17 @@
 $primary: #007D88;
 $secondary: #ebf5f5;
 $light: #F4F5F5;
+$warning: #ffe97a;
+$success: #29c486;
+
+$theme-colors: (
+  "main_gray": #6f6f6f,
+  "yellow": #cc9d00,
+  "green": #106644,
+  "purple": #c4a4fc,
+  "dark-purple": #503680
+);
+
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap";

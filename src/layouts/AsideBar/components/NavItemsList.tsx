@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../hooks/useReduxHook'
 
 const navItemsArray = [
     { id: 1, item: 'Dashboard', element: MdOutlineDashboard, path: '/dashboard' },
-    { id: 2, item: 'User management', element: FiUsers, path: '/users' },
+    { id: 2, item: 'Users management', element: FiUsers, path: '/users' },
     { id: 3, item: 'Creating a trip', element: BiTrip, path: '/trips' },
 ]
 
@@ -14,7 +14,7 @@ const NavItemsList = () => {
     const burgerToggle = useAppSelector((state) => state.toggleBurger.toggle)
 
     return (
-        <ul style={{ all: 'unset' }}>
+        <ul style={{ all: 'unset', listStyle: 'none' }}>
             {navItemsArray.map((elem) => (
                 <NavItem
                     link={elem.path}

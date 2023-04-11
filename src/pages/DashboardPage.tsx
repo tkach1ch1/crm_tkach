@@ -1,10 +1,13 @@
+import PageTitle from '../components/PageTitle'
+import { MdOutlineDashboard } from 'react-icons/md'
+
 const DashboardPage = () => {
     return (
-        <div
-            style={{ marginLeft: '100px' }}
-            className='position-relative'
-        >
-            DashboardPage
+        <div>
+            <PageTitle
+                title='Dashboard'
+                icon={<MdOutlineDashboard />}
+            />
         </div>
     )
 }

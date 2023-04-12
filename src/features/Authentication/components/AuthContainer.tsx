@@ -2,16 +2,17 @@ import { ReactNode } from 'react'
 
 interface AuthContainerProps {
     children: ReactNode
+    maxWidth: string
 }
 
-const AuthContainer = ({ children }: AuthContainerProps) => {
+const AuthContainer = ({ children, maxWidth }: AuthContainerProps) => {
     return (
         <div
             className='rounded container'
             style={{
                 background: 'white',
                 boxShadow: '0px 6px 16px rgba(47, 52, 58, 0.1)',
-                maxWidth: '400px',
+                maxWidth: maxWidth,
                 padding: '15px 40px',
             }}
         >

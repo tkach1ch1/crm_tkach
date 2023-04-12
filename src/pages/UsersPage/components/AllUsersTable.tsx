@@ -13,6 +13,7 @@ const AllUsersTable = () => {
                     <th scope='col'>Name</th>
                     <th scope='col'>Email Address</th>
                     <th scope='col'>Phone</th>
+                    <th scope='col'>Birthday</th>
                     <th scope='col'>Labels</th>
                     <th scope='col'>Date Created</th>
                 </tr>

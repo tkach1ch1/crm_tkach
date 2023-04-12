@@ -2,11 +2,11 @@ import AuthContainer from '../components/AuthContainer'
 import AuthTitle from '../components/AuthTitle'
 import LoginForm from './components/LoginForm'
 import LoginMethods from './components/LoginMethods'
-import SendintToSignUp from './components/SendintToSignUp'
+import CallToAction from '../components/CallToAction'
 
 const SignIn = () => {
     return (
-        <AuthContainer>
+        <AuthContainer maxWidth='400px'>
             <AuthTitle title='Login' />
             <LoginForm />
             <div
@@ -16,7 +16,11 @@ const SignIn = () => {
                 &mdash; or &mdash;
             </div>
             <LoginMethods />
-            <SendintToSignUp />
+            <CallToAction
+                text="Don't have an account yet?"
+                action='Sign Up'
+                link='/signup'
+            />
         </AuthContainer>
     )
 }

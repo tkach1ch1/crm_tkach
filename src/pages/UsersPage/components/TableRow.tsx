@@ -25,6 +25,7 @@ const TableRow = () => {
             <TableData style={{ fontWeight: '500' }}>Bogdan Tkach</TableData>
             <TableData style={{ color: '#6f6f6f' }}>tkachbogdan0205@gmail.com</TableData>
             <TableData style={{ color: '#6f6f6f' }}>+38066377283</TableData>
+            <TableData style={{ color: '#6f6f6f' }}>02.05.1999</TableData>
             <td>
                 <select
                     className={selectClass}

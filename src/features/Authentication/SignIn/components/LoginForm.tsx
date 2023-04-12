@@ -1,16 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import LoginInput from './LoginInput'
-import { AiFillEye } from 'react-icons/ai'
-import { AiFillEyeInvisible } from 'react-icons/ai'
+
 import '../../style.css'
+import ShowPasswordBtn from '../../components/ShowPasswordBtn'
 
 const LoginForm = () => {
     const [loginValues, setLoginValues] = useState({
         email: '',
         password: '',
     })
-
-    const [showPassword, setShowPassword] = useState(false)
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
@@ -19,6 +17,12 @@ const LoginForm = () => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
+    }
+
+    const [showPass, setShowPass] = useState(false)
+
+    const showPassFunc = (value: boolean) => {
+        setShowPass(value)
     }
 
     return (
@@ -36,24 +40,14 @@ const LoginForm = () => {
             />
             <div className='position-relative'>
                 <LoginInput
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPass ? 'text' : 'password'}
                     name='password'
                     id='inputPassword'
                     placeholder='Password'
                     value={loginValues.password}
                     onChange={handleInputChange}
                 />
-                <button
-                    onClick={() => setShowPassword(!showPassword)}
-                    type='button'
-                    className='password-btn'
-                >
-                    {showPassword ? (
-                        <AiFillEyeInvisible style={{ width: '20px', height: '20px' }} />
-                    ) : (
-                        <AiFillEye style={{ width: '20px', height: '20px' }} />
-                    )}
-                </button>
+                <ShowPasswordBtn showPassFunc={showPassFunc} />
             </div>
 
             <button

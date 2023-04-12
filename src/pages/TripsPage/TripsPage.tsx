@@ -1,12 +1,15 @@
-import React from 'react'
 import PageTitle from '../../components/PageTitle'
 import { BiTrip } from 'react-icons/bi'
 import CreateTripButton from './components/CreateTripButton'
 import AllTripsTable from './components/AllTripsTable'
+import { useAppSelector } from '../../hooks/useReduxHook'
+import CreatedTripPopup from './components/CreatedTripPopup'
 
 const TripsPage = () => {
+    const createdTrip = useAppSelector((state) => state.createdTrip.successfulTrip)
+
     return (
-        <div>
+        <div className='position-relative'>
             <PageTitle
                 title='Trips management'
                 icon={<BiTrip />}
@@ -16,6 +19,7 @@ const TripsPage = () => {
                 Created trips
             </div>
             <AllTripsTable />
+            {createdTrip ? <CreatedTripPopup /> : null}
         </div>
     )
 }

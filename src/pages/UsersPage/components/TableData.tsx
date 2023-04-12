@@ -7,11 +7,8 @@ interface TableDataProps {
 
 const TableData = ({ children, style }: TableDataProps) => {
     return (
-        <td
-            className='pt-3'
-            style={style}
-        >
-            {children}
+        <td style={style}>
+            <div style={{ paddingTop: '8px' }}>{children}</div>
         </td>
     )
 }

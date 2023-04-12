@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useReduxHook'
 import { addTrip } from '../../../redux/allTripsReducer'
+import { successfullyCreatedTrip } from '../../../redux/tripCreatedReducer'
 
 interface ModalFormProps {
     handleClose: () => void
@@ -27,6 +28,10 @@ const ModalForm = ({ handleClose }: ModalFormProps) => {
         event.preventDefault()
         dispatch(addTrip(formValues))
         handleClose()
+        dispatch(successfullyCreatedTrip(true))
+        setTimeout(() => {
+            dispatch(successfullyCreatedTrip(false))
+        }, 2000)
     }
 
     return (

@@ -20,6 +20,7 @@ const Logo = () => {
                     style={{ width: '100%' }}
                 />
             </a>
+
             {burgerToggle ? (
                 <div
                     className='mr-3'

@@ -18,6 +18,7 @@ const AsideBarContainer = ({ children }: AsideBarContainerProps) => {
                 marginTop: '65px',
                 background: 'white',
                 position: 'fixed',
+                zIndex: '1000',
             }}
         >
             {children}

@@ -9,7 +9,7 @@ import SignInPage from '../../pages/SignInPage'
 import SignUpPage from '../../pages/SignUpPage'
 import AuthLayout from '../../layouts/AuthLayout'
 import ProtectedLayout from '../../layouts/ProtectedLayout'
-import DashboardPage from '../../pages/DashboardPage'
+import DashboardPage from '../../pages/DashboardPage/DashboardPage'
 import UsersPage from '../../pages/UsersPage/UsersPage'
 import TripsPage from '../../pages/TripsPage'
 

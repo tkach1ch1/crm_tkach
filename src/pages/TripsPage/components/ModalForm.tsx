@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useReduxHook'
 import { addTrip } from '../../../redux/allTripsReducer'
 import { successfullyCreatedTrip } from '../../../redux/tripCreatedReducer'
+import TripFormInput from './TripFormInput'
 
 interface ModalFormProps {
     handleClose: () => void
@@ -37,99 +38,81 @@ const ModalForm = ({ handleClose }: ModalFormProps) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className='form-row'>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputFrom'>From</label>
-                    <input
-                        type='text'
-                        name='from'
-                        value={formValues.from}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputFrom'
-                        placeholder='Kyiv'
-                        required
-                    />
-                </div>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputWhere'>Where</label>
-                    <input
-                        type='text'
-                        name='where'
-                        value={formValues.where}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputWhere'
-                        placeholder='Lviv'
-                        required
-                    />
-                </div>
+                <TripFormInput
+                    htmlFor='inputFrom'
+                    label='From'
+                    type='text'
+                    name='from'
+                    value={formValues.from}
+                    onChange={handleInputChange}
+                    id='inputFrom'
+                    placeholder='Kyiv'
+                />
+
+                <TripFormInput
+                    htmlFor='inputWhere'
+                    label='Where'
+                    type='text'
+                    name='where'
+                    value={formValues.where}
+                    onChange={handleInputChange}
+                    id='inputWhere'
+                    placeholder='Lviv'
+                />
             </div>
             <div className='form-row'>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputTransportType'>Transport type</label>
-                    <input
-                        type='text'
-                        name='type'
-                        value={formValues.type}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputTransportType'
-                        placeholder='Train/Bus/Auto'
-                        required
-                    />
-                </div>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputTransportNumber'>Transport number</label>
-                    <input
-                        type='text'
-                        name='number'
-                        value={formValues.number}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputTransportNumber'
-                        required
-                    />
-                </div>
+                <TripFormInput
+                    htmlFor='inputTransportType'
+                    label='Transport type'
+                    type='text'
+                    name='type'
+                    value={formValues.type}
+                    onChange={handleInputChange}
+                    id='inputTransportType'
+                    placeholder='Train/Bus/Auto'
+                />
+
+                <TripFormInput
+                    htmlFor='inputTransportNumber'
+                    label='Transport number'
+                    type='text'
+                    name='number'
+                    value={formValues.number}
+                    onChange={handleInputChange}
+                    id='inputTransportNumber'
+                />
             </div>
             <div className='form-row'>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputDepartureDate'>Deparute date</label>
-                    <input
-                        type='date'
-                        name='date'
-                        value={formValues.date}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputDepartureDate'
-                        required
-                    />
-                </div>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputDepartureTime'>Departure time</label>
-                    <input
-                        type='time'
-                        name='time'
-                        value={formValues.time}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputDepartureTime'
-                        required
-                    />
-                </div>
+                <TripFormInput
+                    htmlFor='inputDepartureDate'
+                    label='Deparute date'
+                    type='date'
+                    name='date'
+                    value={formValues.date}
+                    onChange={handleInputChange}
+                    id='inputDepartureDate'
+                />
+                <TripFormInput
+                    htmlFor='inputDepartureTime'
+                    label='Departure time'
+                    type='time'
+                    name='time'
+                    value={formValues.time}
+                    onChange={handleInputChange}
+                    id='inputDepartureTime'
+                />
             </div>
             <div className='form-row'>
-                <div className='form-group col-md-6'>
-                    <label htmlFor='inputSeatsAmount'>Amount of seats</label>
-                    <input
-                        type='text'
-                        name='seats'
-                        value={formValues.seats}
-                        onChange={handleInputChange}
-                        className='form-control'
-                        id='inputSeatsAmount'
-                        required
-                    />
-                </div>
+                <TripFormInput
+                    htmlFor='inputSeatsAmount'
+                    label='Amount of seats'
+                    type='text'
+                    name='seats'
+                    value={formValues.seats}
+                    onChange={handleInputChange}
+                    id='inputSeatsAmount'
+                />
+
                 <div className='col-md-6 d-flex align-items-center justify-content-center'>
                     <button
                         type='submit'

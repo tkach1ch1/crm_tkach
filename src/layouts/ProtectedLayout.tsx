@@ -6,7 +6,7 @@ import { useAppSelector } from '../hooks/useReduxHook'
 const ProtectedLayout = () => {
     const toggleBurger = useAppSelector((state) => state.toggleBurger.toggle)
 
-    const user = true
+    const user = false
 
     if (!user) {
         return <Navigate to='/login' />

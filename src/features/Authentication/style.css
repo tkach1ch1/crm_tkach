@@ -1,0 +1,25 @@
+.password-btn {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.password-btn:hover {
+    background-color: #e8e6e6;
+}
+
+.method-hover {
+    opacity: 1;
+}
+
+.method-hover:hover {
+    opacity: 0.8;
+    }

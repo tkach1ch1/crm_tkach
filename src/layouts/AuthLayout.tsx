@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router'
 
 const AuthLayout = () => {
-    const user = true
+    const user = false
 
     if (user) {
         return <Navigate to='/dashboard' />
@@ -9,6 +9,7 @@ const AuthLayout = () => {
 
     return (
         <div
+            className='d-flex justify-content-center align-items-center'
             style={{
                 width: '100%',
                 height: '100vh',

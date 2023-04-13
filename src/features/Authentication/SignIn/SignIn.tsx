@@ -3,11 +3,16 @@ import AuthTitle from '../components/AuthTitle'
 import LoginForm from './components/LoginForm'
 import LoginMethods from './components/LoginMethods'
 import CallToAction from '../components/CallToAction'
+import ErrorAlert from '../../../components/ErrorAlert'
+import { useAppSelector } from '../../../hooks/useReduxHook'
 
 const SignIn = () => {
+    const error = useAppSelector((state) => state.errorHandle.error)
+
     return (
         <AuthContainer maxWidth='400px'>
             <AuthTitle title='Login' />
+            {error && <ErrorAlert errorMassage={error} />}
             <LoginForm />
             <div
                 className='mb-3'

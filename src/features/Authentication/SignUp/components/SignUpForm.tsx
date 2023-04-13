@@ -1,6 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import SignUpInput from './SignUpInput'
 import CallToAction from '../../components/CallToAction'
+import { useAuth } from '../../../../context/AuthContext'
+import { db } from '../../../../firebase/firebaseConfig'
+import { doc, setDoc } from 'firebase/firestore'
+import { useAppDispatch } from '../../../../hooks/useReduxHook'
+import { Navigate, useNavigate } from 'react-router'
 
 const SignUpForm = () => {
     const [signUpValues, setSignUpValues] = useState({
@@ -12,13 +17,33 @@ const SignUpForm = () => {
         password: '',
     })
 
+    const { signup, currentUser } = useAuth()
+
+    const navigate = useNavigate()
+
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setSignUpValues({ ...signUpValues, [name]: value })
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
+        try {
+            await signup(signUpValues.email, signUpValues.password)
+
+            if (currentUser) {
+                await setDoc(doc(db, 'users', currentUser.uid), {
+                    first_name: signUpValues.first_name,
+                    last_name: signUpValues.last_name,
+                    birthday: signUpValues.birthday,
+                    phone_number: signUpValues.phone_number,
+                    email: signUpValues.email,
+                    role: 'Passanger',
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

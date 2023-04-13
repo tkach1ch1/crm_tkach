@@ -24,7 +24,7 @@ const SignUpInput = ({
     required,
 }: SignUpInputProps) => {
     return (
-        <div className='form-group col-md-6'>
+        <div className='form-group col-md-6 pb-2'>
             <label htmlFor={htmlFor}>{label}</label>
             <input
                 type={type}

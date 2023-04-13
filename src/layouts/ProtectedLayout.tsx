@@ -2,13 +2,14 @@ import { Navigate, Outlet } from 'react-router'
 import TopBar from './TopBar/TopBar'
 import AsideBar from './AsideBar/AsideBar'
 import { useAppSelector } from '../hooks/useReduxHook'
+import { useAuth } from '../context/AuthContext'
 
 const ProtectedLayout = () => {
     const toggleBurger = useAppSelector((state) => state.toggleBurger.toggle)
 
-    const user = false
+    const { currentUser } = useAuth()
 
-    if (!user) {
+    if (!currentUser) {
         return <Navigate to='/login' />
     }
 

@@ -1,10 +1,13 @@
 import { Navigate, Outlet } from 'react-router'
+import { useAuth } from '../context/AuthContext'
 
 const AuthLayout = () => {
-    const user = false
+    const { currentUser } = useAuth()
 
-    if (user) {
+    if (currentUser && currentUser.email === 'tkachbogdan0205@gmail.com') {
         return <Navigate to='/dashboard' />
+    } else if (currentUser && currentUser.email !== 'tkachbogdan0205@gmail.com') {
+        return <Navigate to='/' />
     }
 
     return (

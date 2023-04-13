@@ -1,6 +1,8 @@
+import { useAuth } from '../../../../context/AuthContext'
 import ListItem from './ListItem'
 
 const ProfileDropdown = () => {
+    const { logout } = useAuth()
     return (
         <div
             className='position-absolute'
@@ -14,7 +16,12 @@ const ProfileDropdown = () => {
             <ul style={{ listStyle: 'none', all: 'unset' }}>
                 <ListItem>Profile</ListItem>
                 <ListItem>Settings</ListItem>
-                <ListItem active={true}>Logout</ListItem>
+                <ListItem
+                    active={true}
+                    onClick={logout}
+                >
+                    Logout
+                </ListItem>
             </ul>
         </div>
     )

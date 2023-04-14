@@ -1,24 +1,27 @@
+import { ReactNode } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import { RxCross2 } from 'react-icons/rx'
-import ModalForm from './ModalForm'
 
-interface CreateTripModalProps {
+interface ModalProps {
     show: boolean
     handleClose: () => void
+    size?: 'sm' | 'lg' | 'xl' | undefined
+    title: string
+    children: ReactNode
 }
 
-const CreateTripModal = ({ show, handleClose }: CreateTripModalProps) => {
+const ModalWindow = ({ show, handleClose, size, title, children }: ModalProps) => {
     return (
         <Modal
             show={show}
             onHide={handleClose}
             tabIndex='-1'
-            size='lg'
             centered
+            size={size}
         >
             <Modal.Header>
                 <Modal.Title className='d-flex justify-content-between w-100'>
-                    <div>Create a trip</div>
+                    <div>{title}</div>
                     <Button
                         onClick={handleClose}
                         className='d-flex justify-content-center align-items-center'
@@ -27,11 +30,9 @@ const CreateTripModal = ({ show, handleClose }: CreateTripModalProps) => {
                     </Button>
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <ModalForm handleClose={handleClose} />
-            </Modal.Body>
+            <Modal.Body>{children}</Modal.Body>
         </Modal>
     )
 }
 
-export default CreateTripModal
+export default ModalWindow

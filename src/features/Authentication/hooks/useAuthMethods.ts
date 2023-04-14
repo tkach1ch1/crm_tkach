@@ -1,6 +1,12 @@
-import { FacebookAuthProvider, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import {
+    FacebookAuthProvider,
+    GoogleAuthProvider,
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+    signInWithPopup,
+} from 'firebase/auth'
 import { auth } from '../../../firebase/firebaseConfig'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook'
 import { getErrorMassage } from '../../../redux/errorHandleReducer'
 
@@ -51,7 +57,18 @@ const useAuthMethods = () => {
 
     //Phone number login
 
-    return { loginWithFacebook, loginWithGoogle }
+    const generateRecaptcha = () => {
+        const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth)
+        return recaptchaVerifier
+    }
+
+    const loginWithPhoneNumber = (number: string) => {
+        const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth)
+        recaptchaVerifier.render()
+        return signInWithPhoneNumber(auth, number, recaptchaVerifier)
+    }
+
+    return { loginWithFacebook, loginWithGoogle, generateRecaptcha, loginWithPhoneNumber }
 }
 
 export default useAuthMethods

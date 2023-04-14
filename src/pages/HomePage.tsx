@@ -1,8 +1,5 @@
 import { Navigate } from 'react-router'
 import { useAuth } from '../context/AuthContext'
-import { useEffect } from 'react'
-import { doc, setDoc } from 'firebase/firestore'
-import { useAppSelector } from '../hooks/useReduxHook'
 
 const HomePage = () => {
     const { logout } = useAuth()

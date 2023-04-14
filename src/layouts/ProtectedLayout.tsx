@@ -6,11 +6,17 @@ import { useAuth } from '../context/AuthContext'
 
 const ProtectedLayout = () => {
     const toggleBurger = useAppSelector((state) => state.toggleBurger.toggle)
+    const isAllowedAuth = useAppSelector((state) => state.allowReducer.isAllowedAuth)
 
     const { currentUser } = useAuth()
 
-    if (!currentUser) {
-        return <Navigate to='/login' />
+    if (!currentUser && isAllowedAuth === false) {
+        return (
+            <Navigate
+                to='/login'
+                replace
+            />
+        )
     }
 
     const marginLeft = toggleBurger ? '215px' : '75px'

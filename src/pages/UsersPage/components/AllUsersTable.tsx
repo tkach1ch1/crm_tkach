@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import TableRow from './TableRow'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../../firebase/firebaseConfig'
+import { nanoid } from 'nanoid'
 
 interface UsersDataProps {
     first_name: string
@@ -10,6 +11,8 @@ interface UsersDataProps {
     phone_number: string
     birthday: string
     created_data: string
+    uid: string
+    role: string
 }
 
 const AllUsersTable = () => {
@@ -32,7 +35,7 @@ const AllUsersTable = () => {
         <table
             className='table'
             style={{
-                minWidth: '1000px',
+                minWidth: '1100px',
             }}
         >
             <thead>
@@ -48,11 +51,14 @@ const AllUsersTable = () => {
             <tbody>
                 {allUsers?.map((data) => (
                     <TableRow
+                        key={nanoid()}
+                        uid={data.uid}
                         name={data.first_name + data.last_name}
                         email={data.email}
                         birthday={data.birthday}
                         created_data={data.created_data}
                         phone_number={data.phone_number}
+                        role={data.role}
                     />
                 ))}
             </tbody>

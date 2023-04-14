@@ -1,7 +1,8 @@
 import { FiPlus } from 'react-icons/fi'
-import CreateTripModal from './CreateTripModal'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
+import ModalWindow from '../../../components/ModalWindow'
+import ModalTripCreateForm from './ModalTripCreateForm'
 
 const CreateTripButton = () => {
     const [showModal, setShowModal] = useState(false)
@@ -24,10 +25,14 @@ const CreateTripButton = () => {
                     <span>Create new trip</span>
                 </div>
             </Button>
-            <CreateTripModal
+            <ModalWindow
                 show={showModal}
                 handleClose={handleClose}
-            />
+                title='Create a trip'
+                size='lg'
+            >
+                <ModalTripCreateForm handleClose={handleClose} />
+            </ModalWindow>
         </>
     )
 }

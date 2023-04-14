@@ -1,13 +1,20 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useAppDispatch } from '../../../hooks/useReduxHook'
 import { addTrip } from '../../../redux/allTripsReducer'
-import { successfullyCreatedTrip } from '../../../redux/tripCreatedReducer'
+import { successfullyCreatedTrip } from '../../../redux/tripActionReducer'
 import TripFormInput from './TripFormInput'
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from '../../../firebase/firebaseConfig'
+import { nanoid } from 'nanoid'
 
 interface ModalFormProps {
     handleClose: () => void
 }
-const ModalForm = ({ handleClose }: ModalFormProps) => {
+
+const ModalTripCreateForm = ({ handleClose }: ModalFormProps) => {
+    const dispatch = useAppDispatch()
+
+    //Trips input form validation
     const [formValues, setFormValues] = useState({
         from: '',
         where: '',
@@ -18,25 +25,47 @@ const ModalForm = ({ handleClose }: ModalFormProps) => {
         seats: '',
     })
 
-    const dispatch = useAppDispatch()
+    const [loading, setLoading] = useState(false)
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setFormValues({ ...formValues, [name]: value })
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    //Trip create
+
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
+        setLoading(true)
+
         dispatch(addTrip(formValues))
+
+        //Get trip id
+        const tripId = nanoid()
+
+        await setDoc(doc(db, 'trips', tripId), {
+            from: formValues.from,
+            where: formValues.where,
+            type: formValues.type,
+            number: formValues.number,
+            date: formValues.date,
+            time: formValues.time,
+            seats: formValues.seats,
+            id: tripId,
+        })
         handleClose()
         dispatch(successfullyCreatedTrip(true))
         setTimeout(() => {
             dispatch(successfullyCreatedTrip(false))
         }, 2000)
+        setLoading(false)
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}
+            autoComplete='off'
+        >
             <div className='form-row'>
                 <TripFormInput
                     htmlFor='inputFrom'
@@ -113,18 +142,20 @@ const ModalForm = ({ handleClose }: ModalFormProps) => {
                     id='inputSeatsAmount'
                 />
 
-                <div className='col-md-6 d-flex align-items-center justify-content-center'>
-                    <button
-                        type='submit'
-                        className='btn btn-primary'
-                        style={{ marginTop: '15px', padding: '10px', width: '200px' }}
-                    >
-                        Create a trip
-                    </button>
-                </div>
+                {!loading ? (
+                    <div className='col-md-6 d-flex align-items-center justify-content-center'>
+                        <button
+                            type='submit'
+                            className='btn btn-primary'
+                            style={{ marginTop: '15px', padding: '10px', width: '200px' }}
+                        >
+                            Create a trip
+                        </button>
+                    </div>
+                ) : null}
             </div>
         </form>
     )
 }
 
-export default ModalForm
+export default ModalTripCreateForm

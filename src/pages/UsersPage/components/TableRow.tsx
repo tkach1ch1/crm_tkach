@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent } from 'react'
 import TableData from './TableData'
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '../../../firebase/firebaseConfig'
 
 export interface UsersDataProps {
     name: string
@@ -7,26 +9,25 @@ export interface UsersDataProps {
     phone_number: string
     birthday: string
     created_data: string
+    uid: string
+    role: string
 }
 
-const TableRow = ({ name, email, phone_number, birthday, created_data }: UsersDataProps) => {
-    const [selectValue, setSelectValue] = useState('passanger')
-
-    const onSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-        setSelectValue(event.target.value)
+const TableRow = ({
+    name,
+    email,
+    phone_number,
+    birthday,
+    created_data,
+    uid,
+    role,
+}: UsersDataProps) => {
+    //On role change update role field of user in users collection
+    const onSelectChange = async (event: ChangeEvent<HTMLSelectElement>) => {
+        await updateDoc(doc(db, 'users', uid), {
+            role: event.target.value,
+        })
     }
-
-    //Select option bg style
-    const labelColor =
-        selectValue === 'passanger'
-            ? 'bg-success text-green'
-            : selectValue === 'driver'
-            ? 'bg-purple text-dark-purple'
-            : selectValue === 'dispatcher'
-            ? 'bg-warning text-yellow'
-            : ''
-
-    const selectClass = 'custom-select'.concat(' ' + labelColor)
 
     return (
         <tr>
@@ -36,18 +37,14 @@ const TableRow = ({ name, email, phone_number, birthday, created_data }: UsersDa
             <TableData style={{ color: '#6f6f6f' }}>{birthday}</TableData>
             <td>
                 <select
-                    className={selectClass}
+                    className='custom-select'
                     onChange={onSelectChange}
                     style={{ border: 'none', width: '200px' }}
                 >
-                    <option
-                        value='passanger'
-                        selected
-                    >
-                        Passanger
-                    </option>
-                    <option value='driver'>Driver</option>
-                    <option value='dispatcher'>Dispatcher</option>
+                    <option value={''}>{role}</option>
+                    <option value='Passanger'>Passanger</option>
+                    <option value='Driver'>Driver</option>
+                    <option value='Dispatcher'>Dispatcher</option>
                 </select>
             </td>
             <TableData style={{ color: '#6f6f6f' }}>{created_data}</TableData>

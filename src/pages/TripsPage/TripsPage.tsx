@@ -3,10 +3,10 @@ import { BiTrip } from 'react-icons/bi'
 import CreateTripButton from './components/CreateTripButton'
 import AllTripsTable from './components/AllTripsTable'
 import { useAppSelector } from '../../hooks/useReduxHook'
-import CreatedTripPopup from './components/CreatedTripPopup'
+import ActionTripPopup from './components/ActionTripPopup'
 
 const TripsPage = () => {
-    const createdTrip = useAppSelector((state) => state.createdTrip.successfulTrip)
+    const tripAction = useAppSelector((state) => state.actionTrip)
 
     return (
         <div className='position-relative'>
@@ -19,7 +19,17 @@ const TripsPage = () => {
                 Created trips
             </div>
             <AllTripsTable />
-            {createdTrip ? <CreatedTripPopup /> : null}
+            {tripAction.successfulTrip ? (
+                <ActionTripPopup
+                    text='The trip was successfully created'
+                    alertColor='alert alert-success'
+                />
+            ) : tripAction.deletedTrip ? (
+                <ActionTripPopup
+                    text='The trip was deleted'
+                    alertColor='alert alert-danger'
+                />
+            ) : null}
         </div>
     )
 }

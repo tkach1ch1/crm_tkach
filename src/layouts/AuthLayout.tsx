@@ -1,12 +1,15 @@
 import { Navigate, Outlet } from 'react-router'
 import { useAuth } from '../context/AuthContext'
+import { useAppSelector } from '../hooks/useReduxHook'
 
 const AuthLayout = () => {
     const { currentUser } = useAuth()
 
-    if (currentUser && currentUser.email === 'tkachbogdan0205@gmail.com') {
+    const isAllowedAuth = useAppSelector((state) => state.allowReducer.isAllowedAuth)
+
+    if (currentUser && currentUser.email === 'tkachbogdan0205@gmail.com' && isAllowedAuth) {
         return <Navigate to='/dashboard' />
-    } else if (currentUser && currentUser.email !== 'tkachbogdan0205@gmail.com') {
+    } else if (currentUser && currentUser.email !== 'tkachbogdan0205@gmail.com' && isAllowedAuth) {
         return <Navigate to='/' />
     }
 

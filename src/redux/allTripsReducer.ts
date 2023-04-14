@@ -8,6 +8,7 @@ export interface AllTripsReducerElements {
     date: string
     time: string
     seats: string
+    id: string
 }
 
 const initialState: AllTripsReducerElements[] = []

@@ -29,7 +29,7 @@ const AllTripsTable = () => {
                 {loading ? (
                     <tbody>
                         <tr>
-                            <td className='w-100'>
+                            <td className='w-25'>
                                 <LoadingAlert />
                             </td>
                         </tr>

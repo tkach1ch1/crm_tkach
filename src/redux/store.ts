@@ -6,6 +6,7 @@ import errorHandleReducer from './errorHandleReducer'
 import allowAuthReducer from './allowAuthReducer'
 import { persistReducer } from 'redux-persist'
 import tripActionReducer from './tripActionReducer'
+import signUpUserAdditionalInfoReducer from './signUpUserAdditionalInfoReducer'
 
 const reducers = combineReducers({
     toggleBurger: burgerToggleReducer,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
     actionTrip: tripActionReducer,
     errorHandle: errorHandleReducer,
     allowReducer: allowAuthReducer,
+    userAdditionalInfo: signUpUserAdditionalInfoReducer,
 })
 
 const persistConfig = {

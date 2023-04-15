@@ -1,72 +1,60 @@
 import TripsTableRow from './TripsTableRow'
-import { collection, getDocs } from 'firebase/firestore'
-import { useEffect, useState } from 'react'
-import { db } from '../../../firebase/firebaseConfig'
-
-interface TripsDataProps {
-    from: string
-    where: string
-    type: string
-    number: string
-    date: string
-    time: string
-    seats: string
-    id: string
-}
+import useAllTrips from '../hooks/useAllTrips'
+import ErrorAlert from '../../../components/ErrorAlert'
+import LoadingAlert from '../../../components/LoadingAlert'
 
 const AllTripsTable = () => {
-    //Get all trips
-    const [allTrips, setAllTrips] = useState<TripsDataProps[]>()
-
-    useEffect(() => {
-        try {
-            const getAllTrips = async () => {
-                const allTrips = await getDocs(collection(db, 'trips'))
-                const allTripsData = allTrips.docs.map((doc) => doc.data())
-                setAllTrips(allTripsData as TripsDataProps[])
-            }
-            getAllTrips()
-        } catch (error) {
-            console.log('All trips data error' + { error })
-        }
-    }, [allTrips])
+    const { allTrips, loading, error } = useAllTrips()
 
     return (
-        <table
-            className='table'
-            style={{
-                minWidth: '1000px',
-            }}
-        >
-            <thead>
-                <tr style={{ fontSize: '14px' }}>
-                    <th scope='col'>Transport number</th>
-                    <th scope='col'>Transport type</th>
-                    <th scope='col'>From</th>
-                    <th scope='col'>Where</th>
-                    <th scope='col'>Available seats</th>
-                    <th scope='col'>Date of departure</th>
-                    <th scope='col'>Time of departure</th>
-                    <th scope='col'>Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                {allTrips &&
-                    allTrips.map((elem) => (
-                        <TripsTableRow
-                            key={elem.id}
-                            from={elem.from}
-                            where={elem.where}
-                            type={elem.type}
-                            number={elem.number}
-                            date={elem.date}
-                            time={elem.time}
-                            seats={elem.seats}
-                            id={elem.id}
-                        />
-                    ))}
-            </tbody>
-        </table>
+        <>
+            <table
+                className='table'
+                style={{
+                    minWidth: '1000px',
+                }}
+            >
+                <thead>
+                    <tr style={{ fontSize: '14px' }}>
+                        <th scope='col'>Transport number</th>
+                        <th scope='col'>Transport type</th>
+                        <th scope='col'>From</th>
+                        <th scope='col'>Where</th>
+                        <th scope='col'>Available seats</th>
+                        <th scope='col'>Date of departure</th>
+                        <th scope='col'>Time of departure</th>
+                        <th scope='col'>Options</th>
+                    </tr>
+                </thead>
+                {loading ? (
+                    <tbody>
+                        <tr>
+                            <td className='w-100'>
+                                <LoadingAlert />
+                            </td>
+                        </tr>
+                    </tbody>
+                ) : (
+                    <tbody>
+                        {allTrips &&
+                            allTrips.map((elem) => (
+                                <TripsTableRow
+                                    key={elem.id}
+                                    from={elem.from}
+                                    where={elem.where}
+                                    type={elem.type}
+                                    number={elem.number}
+                                    date={elem.date}
+                                    time={elem.time}
+                                    seats={elem.seats}
+                                    id={elem.id}
+                                />
+                            ))}
+                    </tbody>
+                )}
+            </table>
+            {error && <ErrorAlert errorMassage='Ups, something weng wrong, please try again!' />}
+        </>
     )
 }
 

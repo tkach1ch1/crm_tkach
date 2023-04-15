@@ -19,7 +19,7 @@ const useAuthMethods = () => {
         if (error) {
             setTimeout(() => {
                 dispatch(getErrorMassage(''))
-            }, 3000)
+            }, 5000)
         }
     }, [error, dispatch])
 
@@ -34,7 +34,7 @@ const useAuthMethods = () => {
             console.log('You have loged in with Facebook')
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
-                dispatch(getErrorMassage('You already have an account'))
+                dispatch(getErrorMassage('You already have an account, try another login method'))
             } else {
                 dispatch(getErrorMassage('Something went wrong, try again'))
             }
@@ -44,11 +44,12 @@ const useAuthMethods = () => {
     //Google login
     const loginWithGoogle = async () => {
         try {
+            dispatch(getErrorMassage(''))
             await signInWithPopup(auth, googleProvider)
             console.log('You have loged in with Google')
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
-                dispatch(getErrorMassage('You already have an account'))
+                dispatch(getErrorMassage('You already have an account, try another login method'))
             } else {
                 dispatch(getErrorMassage('Something went wrong, try again'))
             }

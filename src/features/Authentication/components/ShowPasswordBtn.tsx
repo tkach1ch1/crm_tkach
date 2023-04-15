@@ -19,9 +19,9 @@ const ShowPasswordBtn = ({ showPassFunc }: ShowPasswordBtnProps) => {
             className='password-btn'
         >
             {showPassword ? (
-                <AiFillEyeInvisible style={{ width: '20px', height: '20px' }} />
-            ) : (
                 <AiFillEye style={{ width: '20px', height: '20px' }} />
+            ) : (
+                <AiFillEyeInvisible style={{ width: '20px', height: '20px' }} />
             )}
         </button>
     )

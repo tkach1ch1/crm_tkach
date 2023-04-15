@@ -52,6 +52,7 @@ const ModalTripCreateForm = ({ handleClose }: ModalFormProps) => {
             time: formValues.time,
             seats: formValues.seats,
             id: tripId,
+            created_trip_date: new Date(),
         })
         handleClose()
         dispatch(successfullyCreatedTrip(true))
@@ -141,9 +142,13 @@ const ModalTripCreateForm = ({ handleClose }: ModalFormProps) => {
                     onChange={handleInputChange}
                     id='inputSeatsAmount'
                 />
-
-                {!loading ? (
-                    <div className='col-md-6 d-flex align-items-center justify-content-center'>
+                <div className='col-md-6 d-flex align-items-center justify-content-center'>
+                    {loading ? (
+                        <div
+                            className='spinner-border text-info'
+                            role='status'
+                        />
+                    ) : (
                         <button
                             type='submit'
                             className='btn btn-primary'
@@ -151,8 +156,8 @@ const ModalTripCreateForm = ({ handleClose }: ModalFormProps) => {
                         >
                             Create a trip
                         </button>
-                    </div>
-                ) : null}
+                    )}
+                </div>
             </div>
         </form>
     )

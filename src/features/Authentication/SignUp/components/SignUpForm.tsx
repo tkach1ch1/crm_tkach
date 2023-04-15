@@ -2,11 +2,13 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import SignUpInput from './SignUpInput'
 import CallToAction from '../../components/CallToAction'
 import { useAuth } from '../../../../context/AuthContext'
-import { db } from '../../../../firebase/firebaseConfig'
-import { doc, setDoc } from 'firebase/firestore'
 import ErrorAlert from '../../../../components/ErrorAlert'
+import { useAppDispatch } from '../../../../hooks/useReduxHook'
+import { toggleIsAllowed } from '../../../../redux/allowAuthReducer'
+import { addUserAdditionalInfo } from '../../../../redux/signUpUserAdditionalInfoReducer'
 
 const SignUpForm = () => {
+    const dispatch = useAppDispatch()
     const [signUpValues, setSignUpValues] = useState({
         first_name: '',
         last_name: '',
@@ -19,22 +21,27 @@ const SignUpForm = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const { signup, currentUser } = useAuth()
+    const { signup } = useAuth()
 
+    //Sign up inputs change handle
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setSignUpValues({ ...signUpValues, [name]: value })
     }
 
+    //Form submit
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
+        setError('')
+        setLoading(true)
+
         try {
-            setError('')
-            setLoading(true)
+            //Sign up user
             await signup(signUpValues.email, signUpValues.password)
-            console.log(currentUser)
-            if (currentUser) {
-                await setDoc(doc(db, 'users', currentUser.uid), {
+            dispatch(toggleIsAllowed(true))
+            //Add aditional user info
+            dispatch(
+                addUserAdditionalInfo({
                     first_name: signUpValues.first_name,
                     last_name: signUpValues.last_name,
                     birthday: signUpValues.birthday,
@@ -42,12 +49,10 @@ const SignUpForm = () => {
                     email: signUpValues.email,
                     role: 'Passanger',
                     created_data: new Date().toLocaleDateString(),
-                    uid: currentUser.uid,
                 })
-            }
+            )
         } catch (error) {
             setError('Failed to create an account')
-            console.log(error)
         }
         setLoading(false)
     }
@@ -55,7 +60,10 @@ const SignUpForm = () => {
     return (
         <>
             {error && <ErrorAlert errorMassage={error} />}
-            <form onSubmit={handleSubmit}>
+            <form
+                onSubmit={handleSubmit}
+                autoComplete='off'
+            >
                 <div className='form-row'>
                     <SignUpInput
                         htmlFor='inputFirstName'

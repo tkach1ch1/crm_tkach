@@ -12,7 +12,7 @@ const AuthTitle = ({ title }: AuthTitleProps) => {
                 fontWeight: '700',
                 fontSize: '25px',
                 padding: '15px',
-                marginTop: '40px',
+                marginTop: '30px',
             }}
         >
             {title}

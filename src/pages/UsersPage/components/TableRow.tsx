@@ -39,7 +39,7 @@ const TableRow = ({
                 <select
                     className='custom-select'
                     onChange={onSelectChange}
-                    style={{ border: 'none', width: '200px' }}
+                    style={{ border: 'none', width: '200px', marginLeft: '-12px' }}
                 >
                     <option value={''}>{role}</option>
                     <option value='Passanger'>Passanger</option>

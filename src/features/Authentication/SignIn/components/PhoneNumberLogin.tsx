@@ -1,7 +1,5 @@
-import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
 import LoginMethodContainer from './LoginMethodContainer'
 import { BsFillPhoneFill } from 'react-icons/bs'
-import { auth } from '../../../../firebase/firebaseConfig'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import ModalWindow from '../../../../components/ModalWindow'
 import PhoneAuthForm from './PhoneAuthForm'
@@ -9,27 +7,48 @@ import useAuthMethods from '../../hooks/useAuthMethods'
 
 const PhoneNumberLogin = () => {
     const [phoneAuthShow, setPhoneAuthShow] = useState(false)
-    const [number, setNumber] = useState('')
+    const [falseNumberError, setFalseNumberError] = useState(false)
+    const [expandePhoneAuthForm, setExpandePhoneAuthForm] = useState(false)
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { loginWithPhoneNumber, confirmationResult } = useAuthMethods()
+
+    const [number, setNumber] = useState('+380')
+    const handlePhoneNumberInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         setNumber(event.target.value)
+    }
+
+    //Otp code verification
+    const [otpCode, setOtpCode] = useState('')
+
+    const handleOtpCodeInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
+        let otp = event.target.value
+        setOtpCode(event.target.value)
+        try {
+            if (otp.length === 6) {
+                //Verify otp
+                const result = await confirmationResult.confirm(otp)
+                return result.user
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleClose = () => {
         setPhoneAuthShow(false)
     }
 
-    const { generateRecaptcha, loginWithPhoneNumber } = useAuthMethods()
+    //Check number validation
+    const isNumberNotValid = isNaN(+number.substring(1))
 
-    //Login with phone number func
-    const getOtp = async (event: FormEvent) => {
+    //Login with phone number to get OTP (one time password)
+    const getOtp = (event: FormEvent) => {
         event.preventDefault()
-        try {
-            generateRecaptcha()
-            const response = await loginWithPhoneNumber(number)
-            console.log(response)
-        } catch (error) {
-            // dispatch(getErrorMassage('Something went wrong, try again'))
+        setFalseNumberError(false)
+        if (number.length === 13 && !isNumberNotValid) {
+            loginWithPhoneNumber(number, () => setExpandePhoneAuthForm(true))
+        } else {
+            setFalseNumberError(true)
         }
     }
 
@@ -50,8 +69,12 @@ const PhoneNumberLogin = () => {
                 >
                     <PhoneAuthForm
                         number={number}
-                        onChange={handleInputChange}
+                        onPhoneNumberChange={handlePhoneNumberInputChange}
                         onSubmit={getOtp}
+                        numberError={falseNumberError}
+                        expandeForm={expandePhoneAuthForm}
+                        otpCode={otpCode}
+                        onOtpCodeChange={handleOtpCodeInputChange}
                     />
                 </ModalWindow>
             ) : null}

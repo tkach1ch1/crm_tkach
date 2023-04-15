@@ -6,12 +6,12 @@ const allowAuthReducer = createSlice({
         isAllowedAuth: false,
     },
     reducers: {
-        toggleIsAllowed: (state, action) => {
+        toggleIsSignInAllowed: (state, action) => {
             state.isAllowedAuth = action.payload
         },
     },
 })
 
-export const { toggleIsAllowed } = allowAuthReducer.actions
+export const { toggleIsSignInAllowed } = allowAuthReducer.actions
 
 export default allowAuthReducer.reducer

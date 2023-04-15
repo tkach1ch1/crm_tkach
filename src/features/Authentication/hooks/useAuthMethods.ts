@@ -1,4 +1,5 @@
 import {
+    ConfirmationResult,
     FacebookAuthProvider,
     GoogleAuthProvider,
     RecaptchaVerifier,
@@ -6,9 +7,10 @@ import {
     signInWithPopup,
 } from 'firebase/auth'
 import { auth } from '../../../firebase/firebaseConfig'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook'
 import { getErrorMassage } from '../../../redux/errorHandleReducer'
+import { toggleIsSignInAllowed } from '../../../redux/allowAuthReducer'
 
 const useAuthMethods = () => {
     const dispatch = useAppDispatch()
@@ -31,6 +33,7 @@ const useAuthMethods = () => {
         try {
             dispatch(getErrorMassage(''))
             await signInWithPopup(auth, facebookProvider)
+            dispatch(toggleIsSignInAllowed(true))
             console.log('You have loged in with Facebook')
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
@@ -46,6 +49,7 @@ const useAuthMethods = () => {
         try {
             dispatch(getErrorMassage(''))
             await signInWithPopup(auth, googleProvider)
+            dispatch(toggleIsSignInAllowed(true))
             console.log('You have loged in with Google')
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
@@ -56,20 +60,28 @@ const useAuthMethods = () => {
         }
     }
 
+    const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult>(
+        {} as ConfirmationResult
+    )
+
     //Phone number login
-
-    const generateRecaptcha = () => {
-        const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth)
-        return recaptchaVerifier
+    const loginWithPhoneNumber = async (number: string, callbackAfterRecaptcha: () => void) => {
+        try {
+            const recaptchaVerifier = new RecaptchaVerifier(
+                'recaptcha-container',
+                {
+                    callback: callbackAfterRecaptcha,
+                },
+                auth
+            )
+            const result = await signInWithPhoneNumber(auth, number, recaptchaVerifier)
+            setConfirmationResult(result)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    const loginWithPhoneNumber = (number: string) => {
-        const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {}, auth)
-        recaptchaVerifier.render()
-        return signInWithPhoneNumber(auth, number, recaptchaVerifier)
-    }
-
-    return { loginWithFacebook, loginWithGoogle, generateRecaptcha, loginWithPhoneNumber }
+    return { loginWithFacebook, loginWithGoogle, loginWithPhoneNumber, confirmationResult }
 }
 
 export default useAuthMethods

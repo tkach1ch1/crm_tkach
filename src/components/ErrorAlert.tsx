@@ -1,13 +1,14 @@
 interface ErrorAlertProps {
     errorMassage: string
+    width?: string
 }
 
-const ErrorAlert = ({ errorMassage }: ErrorAlertProps) => {
+const ErrorAlert = ({ errorMassage, width }: ErrorAlertProps) => {
     return (
         <div
             className='alert alert-danger'
-            style={{ width: 'fit-content' }}
             role='alert'
+            style={{ width: width }}
         >
             {errorMassage}
         </div>

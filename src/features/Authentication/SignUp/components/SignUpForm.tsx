@@ -4,8 +4,8 @@ import CallToAction from '../../components/CallToAction'
 import { useAuth } from '../../../../context/AuthContext'
 import ErrorAlert from '../../../../components/ErrorAlert'
 import { useAppDispatch } from '../../../../hooks/useReduxHook'
-import { toggleIsAllowed } from '../../../../redux/allowAuthReducer'
 import { addUserAdditionalInfo } from '../../../../redux/signUpUserAdditionalInfoReducer'
+import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 
 const SignUpForm = () => {
     const dispatch = useAppDispatch()
@@ -38,7 +38,7 @@ const SignUpForm = () => {
         try {
             //Sign up user
             await signup(signUpValues.email, signUpValues.password)
-            dispatch(toggleIsAllowed(true))
+            dispatch(toggleIsSignInAllowed(true))
             //Add aditional user info
             dispatch(
                 addUserAdditionalInfo({

@@ -5,7 +5,7 @@ import ShowPasswordBtn from '../../components/ShowPasswordBtn'
 import { useAuth } from '../../../../context/AuthContext'
 import { useAppDispatch } from '../../../../hooks/useReduxHook'
 import { getErrorMassage } from '../../../../redux/errorHandleReducer'
-import { toggleIsAllowed } from '../../../../redux/allowAuthReducer'
+import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 
 const LoginForm = () => {
     const dispatch = useAppDispatch()
@@ -25,8 +25,8 @@ const LoginForm = () => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
         try {
-            dispatch(toggleIsAllowed(true))
             await login(loginValues.email, loginValues.password)
+            dispatch(toggleIsSignInAllowed(true))
         } catch (error) {
             dispatch(getErrorMassage('Invalid data, please try again'))
         }

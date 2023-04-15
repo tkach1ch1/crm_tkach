@@ -51,7 +51,12 @@ const AllUsersTable = () => {
                     </tbody>
                 )}
             </table>
-            {error && <ErrorAlert errorMassage='Ups, something weng wrong, please try again!' />}
+            {error && (
+                <ErrorAlert
+                    errorMassage='Ups, something weng wrong, please try again!'
+                    width='fit-content'
+                />
+            )}
         </>
     )
 }

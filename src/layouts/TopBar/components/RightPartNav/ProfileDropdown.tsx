@@ -1,6 +1,6 @@
 import { useAuth } from '../../../../context/AuthContext'
 import { useAppDispatch } from '../../../../hooks/useReduxHook'
-import { toggleIsAllowed } from '../../../../redux/allowAuthReducer'
+import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 import ListItem from './ListItem'
 
 const ProfileDropdown = () => {
@@ -8,9 +8,8 @@ const ProfileDropdown = () => {
     const dispatch = useAppDispatch()
 
     const onLogoutClick = () => {
-        dispatch(toggleIsAllowed(false))
-
         logout()
+        dispatch(toggleIsSignInAllowed(false))
     }
     return (
         <div

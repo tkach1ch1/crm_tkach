@@ -8,6 +8,7 @@ import { useAppSelector } from '../../../hooks/useReduxHook'
 
 const SignIn = () => {
     const error = useAppSelector((state) => state.errorHandle.error)
+
     return (
         <AuthContainer maxWidth='400px'>
             <AuthTitle title='Login' />

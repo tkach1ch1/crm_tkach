@@ -1,8 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import ErrorAlert from '../../../../components/ErrorAlert'
 import useAuthMethods from '../../hooks/useAuthMethods'
+import { useAppDispatch } from '../../../../hooks/useReduxHook'
+import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 
 const PhoneAuthForm = () => {
+    const dispatch = useAppDispatch()
+
     const [falseNumberError, setFalseNumberError] = useState(false)
     const [expandePhoneAuthForm, setExpandePhoneAuthForm] = useState(false)
 
@@ -38,6 +42,7 @@ const PhoneAuthForm = () => {
             if (otp.length === 6) {
                 //Verify otp
                 const result = await confirmationResult.confirm(otp)
+                dispatch(toggleIsSignInAllowed(true))
                 return result.user
             }
         } catch (error) {

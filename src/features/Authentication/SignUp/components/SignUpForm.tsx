@@ -48,7 +48,7 @@ const SignUpForm = () => {
                     birthday: signUpValues.birthday,
                     phone_number: signUpValues.phone_number || '-',
                     email: signUpValues.email,
-                    role: 'Passanger',
+                    role: 'Passenger',
                     created_data: new Date().toLocaleDateString(),
                 })
             )

@@ -35,7 +35,7 @@ const TableRow = memo(
                         style={{ border: 'none', width: '200px', marginLeft: '-12px' }}
                     >
                         <option value={''}>{role}</option>
-                        <option value='Passanger'>Passanger</option>
+                        <option value='Passenger'>Passenger</option>
                         <option value='Driver'>Driver</option>
                         <option value='Dispatcher'>Dispatcher</option>
                     </select>

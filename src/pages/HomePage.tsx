@@ -21,7 +21,7 @@ const HomePage = () => {
                 birthday: userInfo.birthday,
                 phone_number: userInfo.phone_number || '-',
                 email: userInfo.email,
-                role: 'Passanger',
+                role: 'Passenger',
                 created_data: new Date().toLocaleDateString(),
                 uid: currentUser?.uid,
             }

@@ -34,7 +34,12 @@ const router = createBrowserRouter(
 
                 <Route
                     path='*'
-                    element={<Navigate to='/dashboard' />}
+                    element={
+                        <Navigate
+                            to='/dashboard'
+                            replace
+                        />
+                    }
                 />
             </Route>
 
@@ -51,7 +56,12 @@ const router = createBrowserRouter(
                 />
                 <Route
                     path='*'
-                    element={<Navigate to='/login' />}
+                    element={
+                        <Navigate
+                            to='/login'
+                            replace
+                        />
+                    }
                 />
             </Route>
 
@@ -62,7 +72,12 @@ const router = createBrowserRouter(
             />
             <Route
                 path='*'
-                element={<Navigate to='/' />}
+                element={
+                    <Navigate
+                        to='/'
+                        replace
+                    />
+                }
             />
         </>
     )

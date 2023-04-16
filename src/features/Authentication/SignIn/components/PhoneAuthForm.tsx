@@ -1,36 +1,61 @@
-import { ChangeEvent, FormEvent } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import ErrorAlert from '../../../../components/ErrorAlert'
+import useAuthMethods from '../../hooks/useAuthMethods'
 
-interface PhoneAuthFormProps {
-    number: string
-    onPhoneNumberChange: (event: ChangeEvent<HTMLInputElement>) => void
-    otpCode: string
-    onOtpCodeChange: (event: ChangeEvent<HTMLInputElement>) => void
-    onSubmit: (event: FormEvent) => void
-    numberError: boolean
-    expandeForm: boolean
-}
+const PhoneAuthForm = () => {
+    const [falseNumberError, setFalseNumberError] = useState(false)
+    const [expandePhoneAuthForm, setExpandePhoneAuthForm] = useState(false)
 
-const PhoneAuthForm = ({
-    number,
-    onPhoneNumberChange,
-    otpCode,
-    onOtpCodeChange,
-    onSubmit,
-    numberError,
-    expandeForm,
-}: PhoneAuthFormProps) => {
+    const [number, setNumber] = useState('+380')
+
+    const handlePhoneNumberInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setNumber(event.target.value)
+    }
+
+    const { loginWithPhoneNumber, confirmationResult } = useAuthMethods()
+
+    //Check number validation
+    const isNumberNotValid = isNaN(+number.substring(1))
+
+    //Login with phone number to get OTP (one time password)
+    const getOtp = (event: FormEvent) => {
+        event.preventDefault()
+        setFalseNumberError(false)
+        if (number.length === 13 && !isNumberNotValid) {
+            loginWithPhoneNumber(number, () => setExpandePhoneAuthForm(true))
+        } else {
+            setFalseNumberError(true)
+        }
+    }
+
+    //Otp code verification
+    const [otpCode, setOtpCode] = useState('')
+
+    const handleOtpCodeInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
+        let otp = event.target.value
+        setOtpCode(event.target.value)
+        try {
+            if (otp.length === 6) {
+                //Verify otp
+                const result = await confirmationResult.confirm(otp)
+                return result.user
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
-            {numberError && <ErrorAlert errorMassage='Please enter a valid phone number' />}
-            <form onSubmit={onSubmit}>
+            {falseNumberError && <ErrorAlert errorMassage='Please enter a valid phone number' />}
+            <form onSubmit={getOtp}>
                 <div className='form-group'>
                     <input
                         className='form-control w-75'
                         id='phoneNumberInput'
                         aria-describedby='phoneNumberHelp'
                         value={number}
-                        onChange={onPhoneNumberChange}
+                        onChange={handlePhoneNumberInputChange}
                         required
                     />
                     <small
@@ -42,7 +67,7 @@ const PhoneAuthForm = ({
                 </div>
 
                 {/* Recaptcha */}
-                {!expandeForm ? (
+                {!expandePhoneAuthForm ? (
                     <div
                         id='recaptcha-container'
                         className='mb-3'
@@ -50,13 +75,13 @@ const PhoneAuthForm = ({
                 ) : null}
 
                 {/* Sended code input  */}
-                {expandeForm ? (
+                {expandePhoneAuthForm ? (
                     <div className='form-group'>
                         <input
                             className='form-control w-75'
                             id='otpCodeInput'
                             value={otpCode}
-                            onChange={onOtpCodeChange}
+                            onChange={handleOtpCodeInputChange}
                             aria-describedby='otpCodeHelp'
                             required
                         />

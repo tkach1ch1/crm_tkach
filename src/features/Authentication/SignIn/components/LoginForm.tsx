@@ -9,19 +9,19 @@ import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 
 const LoginForm = () => {
     const dispatch = useAppDispatch()
+    const { login } = useAuth()
 
     const [loginValues, setLoginValues] = useState({
         email: '',
         password: '',
     })
 
-    const { login } = useAuth()
-
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setLoginValues({ ...loginValues, [name]: value.trim() })
     }
 
+    //On email login submit
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
         try {

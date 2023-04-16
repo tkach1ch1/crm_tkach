@@ -15,6 +15,7 @@ import { toggleIsSignInAllowed } from '../../../redux/allowAuthReducer'
 const useAuthMethods = () => {
     const dispatch = useAppDispatch()
 
+    //Error that show on wrong logins
     const error = useAppSelector((state) => state.errorHandle.error)
 
     useEffect(() => {
@@ -60,13 +61,16 @@ const useAuthMethods = () => {
         }
     }
 
+    //Phone number login
+
+    //If recaptcha was completed, get object with confirmation
     const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult>(
         {} as ConfirmationResult
     )
 
-    //Phone number login
     const loginWithPhoneNumber = async (number: string, callbackAfterRecaptcha: () => void) => {
         try {
+            // Create recaptcha
             const recaptchaVerifier = new RecaptchaVerifier(
                 'recaptcha-container',
                 {
@@ -74,6 +78,7 @@ const useAuthMethods = () => {
                 },
                 auth
             )
+            //Phone number auth using recaptcha
             const result = await signInWithPhoneNumber(auth, number, recaptchaVerifier)
             setConfirmationResult(result)
         } catch (error) {

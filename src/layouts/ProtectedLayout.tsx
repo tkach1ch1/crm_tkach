@@ -10,6 +10,7 @@ const ProtectedLayout = () => {
 
     const { currentUser } = useAuth()
 
+    //Redirect if user is loged out
     if (!currentUser && isAllowedAuth === false) {
         return (
             <Navigate

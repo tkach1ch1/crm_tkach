@@ -9,6 +9,7 @@ import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
 
 const SignUpForm = () => {
     const dispatch = useAppDispatch()
+
     const [signUpValues, setSignUpValues] = useState({
         first_name: '',
         last_name: '',

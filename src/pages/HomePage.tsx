@@ -38,6 +38,7 @@ const HomePage = () => {
         userInfo.email,
     ])
 
+    //Redirect on user's log out
     if (!currentUser) {
         return <Navigate to='/login' />
     }

@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# CRM for passenger transportation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+-   ### [About](#about)
+-   ### [Technologies](#technologies)
+-   ### [Setup](#setup)
 
-In the project directory, you can run:
+### Deployed project could be found under: https://crm-tkach.netlify.app
 
-### `npm start`
+### Project development time: _45h_
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## About
 
-### `npm test`
+**CRM for passenger transportation** is a system from where you can manage all signed up users and also create a trips.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### _Warning ⚠️_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - The regular user will not get access to CRM by login or sign up and he will redirect to home page as if it were a normal application.
+  
+  - To get access to CRM you have to enter a certain login with password, in other words admin login.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ### Login: `tkachbogdan0205@gmail.com`
+    ### Password: `123456789`
+ <br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### The CRM system includes three main pages:
 
-### `npm run eject`
+### _Dashboard_:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+There are some diagrams on the dashboard page. Since there is no data, the diagrams are shown only for appearence.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### _Users management page_:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+All registered users of application are listed on the users management page in the form of table. Also from here the role of every user could be changed.
+<br />
+<br />
+By a default, after the user signed up, he gets a "Passenger" role. 
+<br />
+<br />
+But also he could get either a "Driver" or "Dispatcher" role.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### _Trips management page_:
 
-## Learn More
+On the trips management page it is possible to create a new trip using a special form. All created trips will be listed in the form of table where the certian trip could be removed if necessary.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## Technologies
+
+Main technologies used for this project:
+
+-   ReactJS (Create-react-app) v18.2.0
+-   Typescript v4.9.5
+-   Bootstrap v4.6.2
+-   Redux Toolkit v1.9.3
+-   Firebase Auth and Firestore Database v9.19.1
+
+---
+
+## Setup
+
+Inside the project, you can run some built-in commands:
+
+-   To start the project locally in **development** mode:
+
+### **_npm start_** or **_yarn start_**
+
+When you run the project, a new browser tab will automatically open on your computer's default browser to view the app.
+
+The development server will start up on _http://localhost:3000_.
+
+The page will automatically reload if you make changes to the code. You will see the build errors and lint warnings in the console.
+
+-   To start the project in **production** mode:
+
+### **_npm build_** or **_yarn build_**
+
+This command builds the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The app is ready to be used.

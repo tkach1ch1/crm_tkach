@@ -5,8 +5,8 @@ import NotificationItem from './NotificationItem'
 const RightPartNav = () => {
     return (
         <div
-            className='d-inline-flex justify-content-between align-items-center'
-            style={{ listStyle: 'none', marginBottom: '0', gap: '10px' }}
+            className='d-inline-flex justify-content-between align-items-center list-unstyled mb-0'
+            style={{ gap: '10px' }}
         >
             <MessageItem />
             <NotificationItem />

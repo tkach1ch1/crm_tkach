@@ -43,43 +43,46 @@ const HomePage = () => {
     }
 
     return (
-        <div style={{ width: '100%', height: '100vh ', background: '#F4F5F5', padding: '40px' }}>
+        <div
+            className='w-100 vh-100 bg-light'
+            style={{ padding: '40px' }}
+        >
             <div
                 className='container w-5 w-50 h-100 bg-white rounded '
-                style={{ boxShadow: ' rgba(0, 0, 0, 0.35) 0px 5px 15px' }}
+                style={{ boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px' }}
             >
                 <div
                     className='d-flex flex-column justify-content-center'
                     style={{ height: 'inherit' }}
                 >
                     <div
-                        className='text-center mb-4'
-                        style={{ fontSize: '25px', fontWeight: '500' }}
+                        className='text-center mb-4 font-weight-bolder'
+                        style={{ fontSize: '25px' }}
                     >
                         You have successfully loged in as a regular user
                     </div>
 
-                    <div style={{ fontSize: '22px', fontWeight: '500', marginBottom: '15px' }}>
+                    <div
+                        className='mb-4 font-weight-bolder'
+                        style={{ fontSize: '22px' }}
+                    >
                         To have access to CRM system you need to follow the following points:
                     </div>
                     <div
+                        className='mb-3 ml-4'
                         style={{
                             fontSize: '20px',
-                            marginLeft: '20px',
                             lineHeight: 2,
-                            marginBottom: '15px',
                         }}
                     >
                         1) Log out <br />
                         2) Use login and password below to log in as an admin: <br />
                     </div>
                     <div
+                        className='ml-4 mb-4 font-weight-bolder'
                         style={{
                             fontSize: '18px',
-                            fontWeight: '500',
-                            marginLeft: '20px',
                             lineHeight: 2,
-                            marginBottom: '20px',
                         }}
                     >
                         Login: tkachbogdan0205@gmail.com <br />

@@ -28,11 +28,11 @@ const ProtectedLayout = () => {
             <div className='d-flex position-relative'>
                 <AsideBar />
                 <main
+                    className='w-100'
                     style={{
                         marginTop: '65px',
                         padding: '15px 20px',
                         flex: 1,
-                        width: '100%',
                         marginLeft: marginLeft,
                     }}
                 >

@@ -16,7 +16,7 @@ const NavItem = ({ children, link }: NavItemProps) => {
 
     const itemsPosition = burgerToggle ? 'justify-content-start' : 'justify-content-center'
     const className =
-        'rounded hover-li p-2 mb-2 d-flex justify-content-start align-items-center'.concat(
+        'rounded hover-li p-2 mb-2 d-flex justify-content-start align-items-center w-100 text-decoration-none'.concat(
             ' ' + itemsPosition
         )
 
@@ -27,9 +27,7 @@ const NavItem = ({ children, link }: NavItemProps) => {
                 to={link}
                 style={{
                     height: '40px',
-                    width: '100%',
                     gap: '10px',
-                    textDecoration: 'none',
                 }}
                 className={({ isActive }) => (isActive ? `active ${className}` : className)}
             >

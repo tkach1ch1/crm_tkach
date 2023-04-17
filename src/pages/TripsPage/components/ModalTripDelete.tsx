@@ -6,7 +6,10 @@ interface ModalTripDeleteProps {
 const ModalTripDelete = ({ onCancelClick, onDeleteClick }: ModalTripDeleteProps) => {
     return (
         <div>
-            <div style={{ fontSize: '20px', fontWeight: '500', marginBottom: '25px' }}>
+            <div
+                className='mb-4 font-weight-bolder'
+                style={{ fontSize: '20px' }}
+            >
                 Do you want to delete a trip?
             </div>
             <div className='d-flex justify-content-between'>

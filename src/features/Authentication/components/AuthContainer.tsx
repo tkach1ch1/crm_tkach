@@ -8,9 +8,8 @@ interface AuthContainerProps {
 const AuthContainer = ({ children, maxWidth }: AuthContainerProps) => {
     return (
         <div
-            className='rounded container'
+            className='rounded container bg-white'
             style={{
-                background: 'white',
                 boxShadow: '0px 6px 16px rgba(47, 52, 58, 0.1)',
                 maxWidth: maxWidth,
                 padding: '15px 40px',

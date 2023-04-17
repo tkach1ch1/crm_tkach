@@ -151,8 +151,8 @@ const ModalTripCreateForm = ({ handleClose }: ModalFormProps) => {
                     ) : (
                         <button
                             type='submit'
-                            className='btn btn-primary'
-                            style={{ marginTop: '15px', padding: '10px', width: '200px' }}
+                            className='btn btn-primary mt-3 p-2'
+                            style={{ width: '200px' }}
                         >
                             Create a trip
                         </button>

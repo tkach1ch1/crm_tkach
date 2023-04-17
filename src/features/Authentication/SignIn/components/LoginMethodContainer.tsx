@@ -12,13 +12,9 @@ const LoginMethodContainer = ({ children, background, onClick }: LoginMethodCont
         <button
             type='button'
             onClick={onClick}
-            className='rounded d-flex align-items-center justify-content-center method-hover'
+            className='rounded d-flex align-items-center justify-content-center method-hover w-100 p-2 border-0 text-white'
             style={{
                 background: background,
-                width: '100%',
-                padding: '10px',
-                border: 'none',
-                color: 'white',
                 gap: '10px',
             }}
         >

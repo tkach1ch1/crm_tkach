@@ -1,8 +1,12 @@
 
 $primary: #007D88;
+
 $secondary: #ebf5f5;
+
 $light: #F4F5F5;
+
 $warning: #ffe97a;
+
 $success: #29c486;
 
 $theme-colors: (
@@ -13,7 +17,9 @@ $theme-colors: (
   "dark-purple": #503680
 );
 
+$font-weight-bolder: 500;
 
+$font-weight-bold: 700;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 

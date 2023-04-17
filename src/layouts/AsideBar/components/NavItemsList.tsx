@@ -14,7 +14,7 @@ const NavItemsList = () => {
     const burgerToggle = useAppSelector((state) => state.toggleBurger.toggle)
 
     return (
-        <ul style={{ all: 'unset', listStyle: 'none' }}>
+        <ul style={{ all: 'unset' }}>
             {navItemsArray.map((elem) => (
                 <NavItem
                     link={elem.path}

@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyAqi3okvS4DL516KCPIwpXlvQZEmu8gTug',
+    apiKey: process.env.REACT_APP_PRIVAT_KEY,
 
     authDomain: 'crm-ca9d3.firebaseapp.com',
 

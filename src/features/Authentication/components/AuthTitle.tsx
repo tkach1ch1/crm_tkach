@@ -5,14 +5,9 @@ interface AuthTitleProps {
 const AuthTitle = ({ title }: AuthTitleProps) => {
     return (
         <div
+            className='w-100 text-center text-uppercase p-4 font-weight-bold mt-4'
             style={{
-                width: '100%',
-                textAlign: 'center',
-                textTransform: 'uppercase',
-                fontWeight: '700',
                 fontSize: '25px',
-                padding: '15px',
-                marginTop: '30px',
             }}
         >
             {title}

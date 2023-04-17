@@ -11,13 +11,11 @@ const AsideBarContainer = ({ children }: AsideBarContainerProps) => {
     const width = toggleBurger ? '215px' : '75px'
     return (
         <nav
-            className='p-2 pt-3 border-right'
+            className='p-2 pt-3 border-right bg-white position-fixed'
             style={{
                 minWidth: width,
                 minHeight: 'calc(100vh - 65px)',
                 marginTop: '65px',
-                background: 'white',
-                position: 'fixed',
                 zIndex: '1000',
             }}
         >

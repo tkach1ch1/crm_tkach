@@ -6,15 +6,11 @@ interface PageTitleProps {
 const PageTitle = ({ title, icon }: PageTitleProps) => {
     return (
         <div
-            className='rounded d-flex align-items-center'
+            className='rounded d-flex align-items-center w-100 p-3 font-weight-bolder mb-4'
             style={{
-                width: '100%',
-                padding: '10px',
                 fontSize: '18px',
-                fontWeight: '500',
                 boxShadow: '0px 6px 16px rgba(47, 52, 58, 0.1)',
                 gap: '15px',
-                marginBottom: '30px',
             }}
         >
             <div

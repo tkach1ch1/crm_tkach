@@ -6,7 +6,7 @@ const MessageItem = () => {
         <ItemContainer>
             <HiOutlineInbox style={{ width: '20px', height: '20px' }} />
             <div
-                className='position-absolute  text-primary rounded'
+                className='position-absolute text-primary rounded'
                 style={{
                     top: 0,
                     right: 0,

@@ -8,7 +8,7 @@ const ActionTripPopup = ({ text, alertColor }: ActionTripPopupProps) => {
         <div
             className={alertColor}
             role='alert'
-            style={{ position: 'fixed', width: 'fit-content', bottom: 0, right: '20px' }}
+            style={{ position: 'fixed', width: 'fit-content', right: '20px', bottom: 0 }}
         >
             {text}
         </div>

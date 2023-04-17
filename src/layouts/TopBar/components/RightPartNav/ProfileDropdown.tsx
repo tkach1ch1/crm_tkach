@@ -21,7 +21,7 @@ const ProfileDropdown = () => {
                 background: 'white',
             }}
         >
-            <ul style={{ listStyle: 'none', all: 'unset' }}>
+            <ul className='list-unstyled mb-0'>
                 <ListItem>Profile</ListItem>
                 <ListItem>Settings</ListItem>
                 <ListItem

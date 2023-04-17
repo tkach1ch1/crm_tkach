@@ -16,8 +16,8 @@ const BurgerMenu = () => {
                 }}
             >
                 <CgMenuLeftAlt
-                    className='burger-hover'
-                    style={{ width: '100%', height: 'inherit' }}
+                    className='burger-hover w-100'
+                    style={{ height: 'inherit' }}
                 />
             </div>
         </div>

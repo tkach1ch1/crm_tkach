@@ -28,12 +28,11 @@ const ProfileIcon = () => {
                     src={developer}
                     alt='profile'
                     style={{
-                        width: '100%',
                         height: 'inherit',
                         objectFit: 'cover',
                         objectPosition: 'right',
                     }}
-                    className='rounded-circle'
+                    className='rounded-circle w-100'
                 />
             </div>
             {btnToggle ? <ProfileDropdown /> : null}

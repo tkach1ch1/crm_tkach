@@ -17,14 +17,14 @@ const Logo = () => {
                 <img
                     src={logo}
                     alt='logo'
-                    style={{ width: '100%' }}
+                    className='w-100'
                 />
             </a>
 
             {burgerToggle ? (
                 <div
-                    className='mr-3'
-                    style={{ fontSize: '25px', fontWeight: '700', fontStyle: 'italic' }}
+                    className='mr-3 font-weight-bold'
+                    style={{ fontSize: '25px', fontStyle: 'italic' }}
                 >
                     CRM
                 </div>

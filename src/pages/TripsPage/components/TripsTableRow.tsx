@@ -31,21 +31,20 @@ const TripsTableRow = memo(
         return (
             <>
                 <tr>
-                    <td style={{ fontWeight: 500 }}>{number}</td>
+                    <td className='font-weight-bolder'>{number}</td>
                     <td className='text-main_gray'>{type}</td>
-                    <td style={{ fontWeight: 500 }}>{from}</td>
-                    <td style={{ fontWeight: 500 }}>{where}</td>
+                    <td className='font-weight-bolder'>{from}</td>
+                    <td className='font-weight-bolder'>{where}</td>
                     <td className='text-main_gray'>{seats}</td>
                     <td className='text-main_gray'>{date}</td>
                     <td className='text-main_gray'>{time}</td>
-                    <td style={{ paddingLeft: '30px', cursor: 'pointer' }}>
+                    <td
+                        className='pl-4'
+                        style={{ cursor: 'pointer' }}
+                    >
                         <button
                             type='button'
-                            style={{
-                                border: 'none',
-                                margin: '0',
-                                background: 'transparent',
-                            }}
+                            className='border-0 m-0 bg-white'
                             onClick={() => setShowModal(true)}
                         >
                             <AiFillDelete style={{ width: '20px', height: '20px' }} />

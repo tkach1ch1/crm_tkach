@@ -14,8 +14,8 @@ const CreateTripButton = () => {
             <Button
                 type='button'
                 onClick={handleShow}
-                className='p-2 bg-primary rounded '
-                style={{ width: '200px', border: 'none', color: 'white', marginBottom: '30px' }}
+                className='p-2 bg-primary rounded border-0 text-white mb-4'
+                style={{ width: '200px' }}
             >
                 <div
                     className='d-flex justify-content-center align-items-center'

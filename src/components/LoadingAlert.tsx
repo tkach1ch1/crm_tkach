@@ -10,7 +10,12 @@ const LoadingAlert = () => {
                 role='status'
             />
 
-            <div style={{ fontSize: '18px', fontWeight: 500 }}>Loading...</div>
+            <div
+                className='font-weight-bolder'
+                style={{ fontSize: '18px' }}
+            >
+                Loading...
+            </div>
         </div>
     )
 }

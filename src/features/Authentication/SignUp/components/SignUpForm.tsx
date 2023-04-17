@@ -144,7 +144,14 @@ const SignUpForm = () => {
                                 Sign up
                             </button>
                         </div>
-                    ) : null}
+                    ) : (
+                        <div className='col-md-6 text-center'>
+                            <div
+                                className='spinner-border text-primary'
+                                role='status'
+                            ></div>
+                        </div>
+                    )}
                     <CallToAction
                         text='Already have an account?'
                         action='Sign In'

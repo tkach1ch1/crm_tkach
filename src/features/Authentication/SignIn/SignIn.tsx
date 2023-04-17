@@ -15,8 +15,8 @@ const SignIn = () => {
             {error && <ErrorAlert errorMassage={error} />}
             <LoginForm />
             <div
-                className='mb-3'
-                style={{ fontSize: '18px', textAlign: 'center' }}
+                className='mb-3 text-center'
+                style={{ fontSize: '18px' }}
             >
                 &mdash; or &mdash;
             </div>

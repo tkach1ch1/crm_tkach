@@ -24,15 +24,15 @@ const TableRow = memo(
 
         return (
             <tr>
-                <TableData style={{ fontWeight: '500' }}>{name}</TableData>
-                <TableData style={{ color: '#6f6f6f' }}>{email}</TableData>
-                <TableData style={{ color: '#6f6f6f' }}>{phone_number}</TableData>
-                <TableData style={{ color: '#6f6f6f' }}>{birthday}</TableData>
+                <TableData className='font-weight-bolder'>{name}</TableData>
+                <TableData className='text-main_gray'>{email}</TableData>
+                <TableData className='text-main_gray'>{phone_number}</TableData>
+                <TableData className='text-main_gray'>{birthday}</TableData>
                 <td>
                     <select
-                        className='custom-select'
+                        className='custom-select border-0 '
                         onChange={onSelectChange}
-                        style={{ border: 'none', width: '200px', marginLeft: '-12px' }}
+                        style={{ width: '200px', marginLeft: '-12px' }}
                     >
                         <option value={''}>{role}</option>
                         <option value='Passenger'>Passenger</option>
@@ -40,7 +40,7 @@ const TableRow = memo(
                         <option value='Dispatcher'>Dispatcher</option>
                     </select>
                 </td>
-                <TableData style={{ color: '#6f6f6f' }}>{created_data}</TableData>
+                <TableData className='text-main_gray'>{created_data}</TableData>
             </tr>
         )
     }

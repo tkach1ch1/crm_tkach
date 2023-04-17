@@ -3,6 +3,7 @@ import ErrorAlert from '../../../../components/ErrorAlert'
 import useAuthMethods from '../../hooks/useAuthMethods'
 import { useAppDispatch } from '../../../../hooks/useReduxHook'
 import { toggleIsSignInAllowed } from '../../../../redux/allowAuthReducer'
+import { addUserAdditionalInfo } from '../../../../redux/signUpUserAdditionalInfoReducer'
 
 const PhoneAuthForm = () => {
     const dispatch = useAppDispatch()
@@ -42,6 +43,17 @@ const PhoneAuthForm = () => {
             if (otp.length === 6) {
                 //Verify otp
                 const result = await confirmationResult.confirm(otp)
+                if (result.user) {
+                    dispatch(
+                        addUserAdditionalInfo({
+                            displayName: result.user.displayName,
+                            phone_number: result.user.phoneNumber,
+                            email: result.user.email,
+                            role: 'Passenger',
+                            created_data: new Date().toLocaleDateString(),
+                        })
+                    )
+                }
                 dispatch(toggleIsSignInAllowed(true))
                 return result.user
             }

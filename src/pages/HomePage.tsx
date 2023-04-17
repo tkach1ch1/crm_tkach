@@ -11,18 +11,16 @@ const HomePage = () => {
     const { addUserInfo } = useUserInfoUpdate()
 
     const userInfo = useAppSelector((state) => state.userAdditionalInfo.userInfo)
-
     //Update user info on user sign up
     useEffect(() => {
         if (currentUser) {
             const updateUserInfo = {
-                first_name: userInfo.first_name,
-                last_name: userInfo.last_name,
-                birthday: userInfo.birthday,
+                displayName: userInfo.displayName || '-',
+                birthday: userInfo.birthday || '-',
                 phone_number: userInfo.phone_number || '-',
-                email: userInfo.email,
-                role: 'Passenger',
-                created_data: new Date().toLocaleDateString(),
+                email: userInfo.email || '-',
+                role: userInfo.role,
+                created_data: userInfo.created_data,
                 uid: currentUser?.uid,
             }
 
@@ -31,11 +29,12 @@ const HomePage = () => {
     }, [
         currentUser,
         addUserInfo,
-        userInfo.first_name,
-        userInfo.last_name,
+        userInfo.displayName,
         userInfo.birthday,
         userInfo.phone_number,
         userInfo.email,
+        userInfo.created_data,
+        userInfo.role,
     ])
 
     //Redirect on user's log out

@@ -4,8 +4,7 @@ const signUpUserAdditionalInfoReducer = createSlice({
     name: 'userAdditionalInfo',
     initialState: {
         userInfo: {
-            first_name: '',
-            last_name: '',
+            displayName: '',
             birthday: '',
             phone_number: '',
             email: '',

@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxHook'
 import { getErrorMassage } from '../../../redux/errorHandleReducer'
 import { toggleIsSignInAllowed } from '../../../redux/allowAuthReducer'
+import { addUserAdditionalInfo } from '../../../redux/signUpUserAdditionalInfoReducer'
 
 const useAuthMethods = () => {
     const dispatch = useAppDispatch()
@@ -33,9 +34,22 @@ const useAuthMethods = () => {
     const loginWithFacebook = async () => {
         try {
             dispatch(getErrorMassage(''))
-            await signInWithPopup(auth, facebookProvider)
+            const result = await signInWithPopup(auth, facebookProvider)
+            if (result.user) {
+                dispatch(
+                    addUserAdditionalInfo({
+                        displayName: result.user.displayName,
+                        phone_number: result.user.phoneNumber,
+                        email: result.user.email,
+                        role: 'Passenger',
+                        created_data: new Date().toLocaleDateString(),
+                    })
+                )
+            }
+
             dispatch(toggleIsSignInAllowed(true))
-            console.log('You have loged in with Facebook')
+            console.log('You have loged in with Facebook', result.user)
+            return result.user
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
                 dispatch(getErrorMassage('You already have an account, try another login method'))
@@ -49,9 +63,22 @@ const useAuthMethods = () => {
     const loginWithGoogle = async () => {
         try {
             dispatch(getErrorMassage(''))
-            await signInWithPopup(auth, googleProvider)
+            const result = await signInWithPopup(auth, googleProvider)
+            if (result.user) {
+                dispatch(
+                    addUserAdditionalInfo({
+                        displayName: result.user.displayName,
+                        phone_number: result.user.phoneNumber,
+                        email: result.user.email,
+                        role: 'Passenger',
+                        created_data: new Date().toLocaleDateString(),
+                    })
+                )
+            }
+
             dispatch(toggleIsSignInAllowed(true))
             console.log('You have loged in with Google')
+            return result.user
         } catch (e) {
             if ((e as Error).message.includes('account-exists-with-different-credential')) {
                 dispatch(getErrorMassage('You already have an account, try another login method'))
@@ -62,7 +89,6 @@ const useAuthMethods = () => {
     }
 
     //Phone number login
-
     //If recaptcha was completed, get object with confirmation
     const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult>(
         {} as ConfirmationResult

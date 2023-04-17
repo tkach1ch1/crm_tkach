@@ -3,8 +3,7 @@ import { db } from '../../../firebase/firebaseConfig'
 import { useEffect, useState } from 'react'
 
 interface UsersDataProps {
-    first_name: string
-    last_name: string
+    displayName: string
     email: string
     phone_number: string
     birthday: string

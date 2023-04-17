@@ -40,7 +40,7 @@ const AllUsersTable = () => {
                             <TableRow
                                 key={nanoid()}
                                 uid={data.uid}
-                                name={data.first_name + ' ' + data.last_name}
+                                name={data.displayName}
                                 email={data.email}
                                 birthday={data.birthday}
                                 created_data={data.created_data}

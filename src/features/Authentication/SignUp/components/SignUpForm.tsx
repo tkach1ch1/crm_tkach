@@ -43,8 +43,7 @@ const SignUpForm = () => {
             //Add aditional user info
             dispatch(
                 addUserAdditionalInfo({
-                    first_name: signUpValues.first_name,
-                    last_name: signUpValues.last_name,
+                    displayName: signUpValues.first_name + ' ' + signUpValues.last_name,
                     birthday: signUpValues.birthday,
                     phone_number: signUpValues.phone_number || '-',
                     email: signUpValues.email,

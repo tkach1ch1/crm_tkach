@@ -3,8 +3,7 @@ import { db } from '../../../firebase/firebaseConfig'
 import { User } from 'firebase/auth'
 
 interface UpdateUserInfoElems {
-    first_name: string
-    last_name: string
+    displayName: string
     birthday: string
     phone_number: string
     email: string

@@ -8,13 +8,9 @@ const AuthLayout = () => {
     const isAllowedAuth = useAppSelector((state) => state.allowReducer.isAllowedAuth)
 
     //Redirects if user is signed in
-    if (currentUser && currentUser.email === process.env.REACT_APP_ADMIN_LOGIN && isAllowedAuth) {
+    if (currentUser && currentUser.email === 'tkachbogdan0205@gmail.com' && isAllowedAuth) {
         return <Navigate to='/dashboard' />
-    } else if (
-        currentUser &&
-        currentUser.email !== process.env.REACT_APP_ADMIN_LOGIN &&
-        isAllowedAuth
-    ) {
+    } else if (currentUser && currentUser.email !== 'tkachbogdan0205@gmail.com' && isAllowedAuth) {
         return <Navigate to='/' />
     }
 
